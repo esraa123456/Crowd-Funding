@@ -77,9 +77,10 @@ WSGI_APPLICATION = 'crowd_funding.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.path.join(BASE_DIR, 'crowd_funding'),
+        'NAME': os.path.join('crowd_funding'),
         'USER':'root',
-        'PASSWORD':'root',
+        'PASSWORD':'',
+        'HOST':'/opt/lampp/var/mysql/mysql.sock'
     }
 }
 
