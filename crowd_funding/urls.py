@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+# SET THE NAMESPACE!
+app_name = 'users'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
