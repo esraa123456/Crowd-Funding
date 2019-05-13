@@ -8,9 +8,9 @@ class User(models.Model):
     password = models.CharField(max_length=50)
     isAdmin = models.BooleanField(default=0)
     phone = models.CharField(max_length=11)
-    birth_date = models.DateField()
-    fb_account =models.CharField(max_length=300)
-    country = models.CharField(max_length=60)
+    birth_date = models.DateField(null=True, blank=True)
+    fb_account =models.CharField(max_length=300, null=True, blank=True)
+    country = models.CharField(max_length=60,null=True, blank=True)
     img = models.ImageField()
     projects = models.ManyToManyField('Project', through = 'Donation')
     def __str__(self):
