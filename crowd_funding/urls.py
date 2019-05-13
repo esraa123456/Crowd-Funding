@@ -24,5 +24,6 @@ urlpatterns = [
     path('special/',views.special,name='special'),
     path('users/',include('users.urls')),
     path('logout/', views.user_logout, name='logout'),
-]
+    path ('project/', include ("funding.urls")),
+    path('users/' , include('funding.urls')),
 

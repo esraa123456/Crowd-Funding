@@ -1,0 +1,6 @@
+{
+    "python.pythonPath": "/home/rahma/Documents/Dajngo/virtualEnv/bin/python",
+    "python.linting.pylintEnabled": false,
+    "python.linting.mypyEnabled": true,
+    "python.linting.enabled": true
+}

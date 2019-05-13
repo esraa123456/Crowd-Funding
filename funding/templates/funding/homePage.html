@@ -1,0 +1,128 @@
+{% extends 'funding/index.html' %}
+
+{% block funding %}
+{% load static %}
+
+<div class="row">
+    <div class="categories col-3">
+        <ul>
+         {% for category in categories %}
+           <li>
+               <a href="category/{{ category.id }}" class="list-group-item list-group-item-action">{{ category.name }}</a>
+            </li>
+          {% empty %}
+              <h3>No Categories</h3>
+          {% endfor %}
+
+        </ul>
+    </div>
+
+    <div class="col-8 px-5">
+        <div class="row">
+            <div class="col-6">
+            </div>
+            <div class="md-form active-cyan-2 mb-3 col-6 align-self-end">
+                <form action="/" method="post">
+                    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="row slider">
+                    <div class="col text-center">
+                        <div class="slider">
+                            <h2>Welcome to Crowed Funding</h2>
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                              <ol class="carousel-indicators">
+                                  {% for project in featured_projects %}
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ project.id }}"></li>
+                                  {% empty %}
+                                    <h3>No Projects</h3>
+                                  {% endfor %}
+                              </ol>
+                              <div class="carousel-inner">
+                                  {% for img in featured_project_image %}
+
+                                <div class="carousel-item">
+                                    <a href="/project/{{img.project_id}}">
+                                        <img class="sliderProject d-block w-100" src="{% static 'funding/images/' %}{{img.img}}" alt="t">
+                                    </a>
+                                </div>
+                                  {% endfor %}
+                              </div>
+                              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                              </a>
+                              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                              </a>
+                            </div>
+                        </div>
+
+                        <div class="latestProjects text-left mt-5">
+                            <h3>Latest Projects</h3>
+                            <hr>
+                            <div class="row">
+                            {% for project in latest_projects %}
+                                <div class="col-4 my-2">
+                                    <div class="card" style="width: 100%;">
+                                        {%for img in latest_project_image%}
+                                        {% if img.project_id == project.id%}
+                                      <img class="card-img-top" src="{% static 'funding/images/' %}{{img.img}}" alt="Card image cap">
+                                        {%endif%}
+                                        {%endfor%}
+                                        <div class="card-body">
+                                        <h5 class="card-title">{{project.title}}</h5>
+                                        <p class="card-text">{{project.detials}}</p>
+                                        <a href="/project/{{project.id}}" class="btn btn-primary">See more...</a>
+                                      </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="featuredProjects text-left mt-5">
+                            <h3>Featured Projects</h3>
+                            <hr>
+                            <div class="row">
+                            {% for project in featured_projects %}
+                                <div class="col-4 my-2">
+                                    <div class="card" style="width: 100%;">
+                                        {%for img in featured_project_image%}
+                                        {% if img.project_id == project.id%}
+                                      <img class="card-img-top" src="{% static 'funding/images/' %}{{img.img}}" alt="Card image cap">
+                                        {%endif%}
+                                        {%endfor%}
+                                        <div class="card-body">
+                                        <h5 class="card-title">{{project.title}}</h5>
+                                        <p class="card-text">{{project.detials}}</p>
+                                        <a href="/project/{{project.id}}" class="btn btn-primary">See more...</a>
+                                      </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
