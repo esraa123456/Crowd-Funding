@@ -12,16 +12,29 @@ from django.contrib.auth.forms import UserChangeForm
 
 @login_required()
 def view_profile (request):
-    # userSet = User.objects.filter(id = id)
-    # for oneUser in userSet:
-    #     user = oneUser
 
-
-    # if request.user.is_authenticated:
-    args ={ 'user': request.user }
-    # else:
-    #     return redirect('views.login')
+    # user = request.user
+    # projects = user.projects_set.all()
+    # donations = user.donation_set.all()
+    args ={ 'user': request.user}
     return render(request, 'users/show.html', args)
+
+@login_required()
+def delete_profile(request):
+    user = request.user
+    user.delete()
+    return HttpResponse("user deleted!")
+
+# def edit_profile(request):
+#     if request.method == 'POST':
+#         form = UserChangeForm(request.POST, instance=request.user)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('/profile/user')
+#         else:
+#             form = UserChangeForm(instance=request.user)
+#             args = {'form': form}
+#             return render(request, 'users/edit.html', args)
 
 def home_page(request):
     categories = Category.objects.all()

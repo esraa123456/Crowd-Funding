@@ -10,3 +10,10 @@ class UserProfileInfo(models.Model):
     def __str__(self):
         return self.user.username
 
+class UserProfile (models.Model):
+    user = models.OneToOneField(UserProfileInfo,on_delete=models.CASCADE )
+    birth_date = models.DateField(null=True, blank=True)
+    fb_account =models.CharField(max_length=300, null=True, blank=True)
+    country = models.CharField(max_length=60,null=True, blank=True)
+
+

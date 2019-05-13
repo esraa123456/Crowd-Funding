@@ -104,5 +104,17 @@
 
 </div>
 
+<form action='delete' method='GET'>
+<button type='submit'> delete your accont</button>
+</form>
+
+{% for project in projects %}
+{{ project.title }}
+{% endfor %}
+<hr>
+
+{% for donation in donations %}
+{{ donation.amount }}
+{% endfor %}
 </body>
 </html>
