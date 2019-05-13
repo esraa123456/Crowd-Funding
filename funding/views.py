@@ -1,8 +1,4 @@
 from django.shortcuts import render
-<<<<<<< HEAD
-
-# Create your views here.
-=======
 from .models import User
 from funding.models import Category,Project,Project_Image
 from django.http import HttpResponse
@@ -52,4 +48,3 @@ def CreateAddProjectForm (request):
     project_form = CreateProjectForm()
     return render (request , 'project/addProject.html' , {'project_form': project_form})
 
->>>>>>> 932ac93ef7602328f71f91e328f5bbf3bfc9ca5a
