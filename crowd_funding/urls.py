@@ -25,6 +25,6 @@ urlpatterns = [
     path('users/',include('users.urls')),
     path('logout/', views.user_logout, name='logout'),
     path ('project/', include ("funding.urls")),
+    path('users/' , include('funding.urls')),
     path('profile/' , include('funding.urls')),
-
 ]
