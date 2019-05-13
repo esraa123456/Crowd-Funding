@@ -7,10 +7,8 @@ class User(models.Model):
     email = models.EmailField(max_length=100)
     password = models.CharField(max_length=50)
     isAdmin = models.BooleanField(default=0)
-    phone = models.CharField(max_length=11)
-    birth_date = models.DateField()
+    # phone = models.CharField(max_length=11)
     fb_account =models.CharField(max_length=300)
-    country = models.CharField(max_length=60)
     img = models.ImageField()
     projects = models.ManyToManyField('Project', through = 'Donation')
 
@@ -61,6 +59,13 @@ class Comment_Reports(models.Model):
     user = models.ForeignKey('User',on_delete=models.CASCADE, null=True)
     comment = models.ForeignKey('Comment',on_delete=models.CASCADE, null=True)
 
+class UserProfileInfo(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    phone = models.CharField(max_length=11)
+    profile_pic = models.ImageField(upload_to='profile_pics',blank=True)
+
+    def __str__(self):
+        return self.user.username
 
 # we often will use libraries for the next 2 classes so no need to define them now
 
