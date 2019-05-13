@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'reset_migrations',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -82,10 +84,10 @@ WSGI_APPLICATION = 'crowd_funding.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.path.join('crowd_funding'),
-        'USER':'root',
-        'PASSWORD':'',
-        'HOST':'/opt/lampp/var/mysql/mysql.sock'
+        'NAME': 'djangoDatabase',
+        'USER': 'sara',
+        'PASSWORD': '',
+        'HOST': 'localhost'
     }
 }
 
