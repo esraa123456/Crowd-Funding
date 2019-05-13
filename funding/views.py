@@ -1,16 +1,24 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import User
 from funding.models import Category,Project,Project_Image
 from django.http import HttpResponse
 from .forms import CreateProjectForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserChangeForm
 # Create your views here.
 
-def user (request, id):
-    userSet = User.objects.filter(id = id)
-    for oneUser in userSet:
-        user = oneUser
-    return render(request, 'users/show.html', {'user':user})
+@login_required()
+def view_profile (request):
+    # userSet = User.objects.filter(id = id)
+    # for oneUser in userSet:
+    #     user = oneUser
 
+
+    # if request.user.is_authenticated:
+    args ={ 'user': request.user }
+    # else:
+    #     return redirect('views.login')
+    return render(request, 'users/show.html', args)
 
 def home_page(request):
     categories = Category.objects.all()

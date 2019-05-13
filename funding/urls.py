@@ -11,7 +11,8 @@ urlpatterns =[
     path('',listAllFeaturedProjects),
     path('add', CreateAddProjectForm), # new
     path('home',home_page),
-    path('<int:id>', views.user, name='user'),
+    path('user', views.view_profile, name='user'),
+    path('edit', views.edit_profile, name='edit'),
 
 ]
 

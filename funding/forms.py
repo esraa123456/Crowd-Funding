@@ -1,4 +1,6 @@
 from django import forms
+# from django.contrib.auth.forms import UserChangeForm
+# from django.contrib.auth.models import User
 
 class CreateProjectForm(forms.Form):
     title = forms.CharField(label='Title',max_length=100)
@@ -7,3 +9,5 @@ class CreateProjectForm(forms.Form):
     end_date = forms.DateField(label='End date')
     target= forms.FloatField(label='Target')
     category =forms.ChoiceField(label='Category')
+
+
