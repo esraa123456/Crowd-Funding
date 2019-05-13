@@ -1,4 +1,7 @@
+
 from django.shortcuts import render, redirect
+
+
 from .models import User
 from funding.models import Category,Project,Project_Image
 from django.http import HttpResponse
@@ -55,4 +58,5 @@ def listAllFeaturedProjects(request):
 def CreateAddProjectForm (request):
     project_form = CreateProjectForm()
     return render (request , 'project/addProject.html' , {'project_form': project_form})
+
 
