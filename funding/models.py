@@ -8,11 +8,12 @@ class User(models.Model):
     password = models.CharField(max_length=50)
     isAdmin = models.BooleanField(default=0)
     phone = models.CharField(max_length=11)
-    birth_date = models.DateField()
-    fb_account =models.CharField(max_length=300)
-    country = models.CharField(max_length=60)
+    birth_date = models.DateField(null=True, blank=True)
+    fb_account =models.CharField(max_length=300, null=True, blank=True)
+    country = models.CharField(max_length=60,null=True, blank=True)
     img = models.ImageField()
     projects = models.ManyToManyField('Project', through = 'Donation')
+
     def __str__(self):
         return self.first_name
 
@@ -26,7 +27,6 @@ class Project(models.Model):
     isFeatured = models.BooleanField(default=0)
     creator = models.ForeignKey('User',on_delete=models.CASCADE, null=True)
     category = models.ForeignKey('Category',on_delete=models.CASCADE, null=True)
-
 
     def __str__(self):
         return self.title       
@@ -60,6 +60,14 @@ class Comment_Reports(models.Model):
     body = models.CharField(max_length=1000)    
     user = models.ForeignKey('User',on_delete=models.CASCADE, null=True)
     comment = models.ForeignKey('Comment',on_delete=models.CASCADE, null=True)
+
+class UserProfileInfo(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    phone = models.CharField(max_length=11)
+    profile_pic = models.ImageField(upload_to='profile_pics',blank=True)
+
+    def __str__(self):
+        return self.user.username
 
 # we often will use libraries for the next 2 classes so no need to define them now
 
