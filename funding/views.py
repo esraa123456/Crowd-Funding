@@ -57,8 +57,17 @@ def home_page(request):
     }
     return render(request,"funding/homePage.html",context)
 
-
-
+def category(request,cat_id):
+    cat_name = Category.objects.filter(id=cat_id)[0].name
+    category_projects = Project.objects.filter(category_id = cat_id)
+    project_images = []
+    for proj in category_projects:
+        img = Project_Image.objects.filter(project_id=proj.id)[:1]
+        project_images.append(img[0])
+    context = {'projects':category_projects,
+               'images':project_images,
+               'cat_name':cat_name}
+    return render(request,"funding/category.html",context)
 
 allFeaturedProjects = Project.objects.all()
 
