@@ -69,6 +69,17 @@ def category(request,cat_id):
                'cat_name':cat_name}
     return render(request,"funding/category.html",context)
 
+def search(request):
+    search_projects = Project.objects.filter(title__contains = request.POST.get('search'))
+    project_images = []
+    for proj in search_projects:
+        img = Project_Image.objects.filter(project_id=proj.id)[:1]
+        project_images.append(img[0])
+    context = {'projects':search_projects,
+               'images':project_images,
+               'search':request.POST.get('search')}
+    return render(request,"funding/search.html",context)
+
 allFeaturedProjects = Project.objects.all()
 
 def listAllFeaturedProjects(request):
