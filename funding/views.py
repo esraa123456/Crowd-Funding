@@ -86,6 +86,24 @@ def listAllFeaturedProjects(request):
     return render (request , 'project/allProjects.html', {'allFeaturedProjects' : allFeaturedProjects})
 
 def CreateAddProjectForm (request):
-    project_form = CreateProjectForm()
-    return render (request , 'project/addProject.html' , {'project_form': project_form})
+    if request.method == 'GET':
+        project_form = CreateProjectForm()
+    if request.method == 'POST':
+        project_form = CreateProjectForm(request.POST)
+        form = CreateProjectForm(request.POST)
+        if form.is_valid():
+            new_project = Project()
+            new_project.title = form.cleaned_data['title']
+            new_project.details = form.cleaned_data['details']
+            new_project.start_date = form.cleaned_data['start_date']
+            new_project.end_date = form.cleaned_data['end_date']
+            new_project.target = form.cleaned_data['target']
+            new_project.category = form.cleaned_data['category']
+            
+            # new_project.image = form.cleaned_data['image']
 
+            # new_project.creator = 
+
+            new_project.save()
+
+    return render (request , 'project/addProject.html' , {'project_form': project_form})

@@ -1,3 +1,5 @@
-<form>
-{{ project_form.as_p}}
+<form method ="POST">
+    {%csrf_token%}
+    {{ project_form.as_p}}
+    <input type ="submit" value ="Add"></input>
 </form>    

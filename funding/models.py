@@ -11,7 +11,7 @@ class User(models.Model):
     birth_date = models.DateField(null=True, blank=True)
     fb_account =models.CharField(max_length=300, null=True, blank=True)
     country = models.CharField(max_length=60,null=True, blank=True)
-    img = models.ImageField()
+    img = models.ImageField(upload_to='images/', null=True, blank=True)
     projects = models.ManyToManyField('Project', through = 'Donation')
 
     def __str__(self):
@@ -19,7 +19,7 @@ class User(models.Model):
 
 class Project(models.Model):
     title = models.CharField(max_length=100)
-    detials = models.CharField(max_length=1000)
+    details = models.TextField(max_length=100 , null =True)
     start_date = models.DateField()
     end_date = models.DateField()
     target= models.FloatField()
@@ -37,7 +37,10 @@ class Project_Image(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=70)    
+    name = models.CharField(max_length=70)  
+
+    def __str__(self):
+        return self.name     
 
 class Donation(models.Model):
     amount = models.FloatField()    
